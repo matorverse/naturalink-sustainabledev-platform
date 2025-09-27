@@ -2,7 +2,6 @@
   "name": "naturalink-sustainability",
   "version": "1.0.0",
   "description": "AI-powered sustainable development platform",
-  "type": "module",
   "main": "index.js",
   "scripts": {
     "dev": "vite",

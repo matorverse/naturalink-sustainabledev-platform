@@ -241,19 +241,6 @@ We welcome contributions from the sustainability and tech communities! Here's ho
 4. Push to the branch: `git push origin feature/amazing-feature`
 5. Open a Pull Request
 
-## 📄 **License**
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-**Open Source for a Sustainable Future** 🌱
-
-## 🌟 **Support & Community**
-
-### **Get Help**
-- **📧 Email**: hello@naturalink.com
-- **🐛 Issues**: [GitHub Issues](https://github.com/matorverse/naturalink-sustainabledev-platform/issues)
-- **💬 Discussions**: [GitHub Discussions](https://github.com/matorverse/naturalink-sustainabledev-platform/discussions)
-- **📖 Documentation**: Check our comprehensive guides above
 
 ### **Stay Connected**
 - **⭐ Star this repository** if you find it helpful

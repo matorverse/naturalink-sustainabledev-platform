@@ -165,8 +165,16 @@ const Features = () => {
                 onClick={() => setActiveFeature(index)}
                 whileHover={{ y: -5 }}
               >
-                <div className={`w-16 h-16 bg-${feature.color}-100 rounded-xl flex items-center justify-center mb-6 mx-auto`}>
-                  <IconComponent className={`w-8 h-8 text-${feature.color}-600`} />
+                <div className={`w-16 h-16 rounded-xl flex items-center justify-center mb-6 mx-auto ${
+                  feature.color === 'eco-green' ? 'bg-eco-green-100' :
+                  feature.color === 'sky-blue' ? 'bg-sky-blue-100' :
+                  'bg-earth-brown-100'
+                }`}>
+                  <IconComponent className={`w-8 h-8 ${
+                    feature.color === 'eco-green' ? 'text-eco-green-600' :
+                    feature.color === 'sky-blue' ? 'text-sky-blue-600' :
+                    'text-earth-brown-600'
+                  }`} />
                 </div>
                 
                 <h3 className="text-xl font-semibold mb-4 text-center">{feature.title}</h3>
@@ -182,7 +190,7 @@ const Features = () => {
                 </ul>
                 
                 <motion.button
-                  className={`mt-6 w-full btn-${isActive ? 'primary' : 'secondary'}`}
+                  className={`mt-6 w-full ${isActive ? 'btn-primary' : 'btn-secondary'}`}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >

@@ -19,10 +19,39 @@ import {
 const BlogResources = () => {
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [searchTerm, setSearchTerm] = useState('')
+  const [email, setEmail] = useState('')
+  const [isSubscribed, setIsSubscribed] = useState(false)
   const { ref, inView } = useInView({
     threshold: 0.1,
     triggerOnce: true
   })
+
+  const handleNewsletterSignup = async (e) => {
+    e.preventDefault()
+    if (!email) return
+    
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000))
+      
+      // Store subscription in localStorage
+      const subscriptions = JSON.parse(localStorage.getItem('newsletterSubscriptions') || '[]')
+      subscriptions.push({
+        email,
+        subscribedAt: new Date().toISOString(),
+        id: Date.now()
+      })
+      localStorage.setItem('newsletterSubscriptions', JSON.stringify(subscriptions))
+      
+      setIsSubscribed(true)
+      setEmail('')
+      
+      // Reset success message after 5 seconds
+      setTimeout(() => setIsSubscribed(false), 5000)
+    } catch (error) {
+      console.error('Newsletter signup error:', error)
+    }
+  }
 
   const categories = [
     { id: 'all', name: 'All Articles', icon: BookOpen },
@@ -385,20 +414,32 @@ const BlogResources = () => {
             variants={itemVariants}
             className="max-w-md mx-auto"
           >
-            <div className="flex gap-4">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green-500 focus:border-transparent"
-              />
-              <motion.button
-                className="btn-primary px-6"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Subscribe
-              </motion.button>
-            </div>
+            {isSubscribed ? (
+              <div className="text-center py-8">
+                <CheckCircle className="w-12 h-12 text-eco-green-600 mx-auto mb-4" />
+                <h4 className="text-lg font-semibold text-gray-800 mb-2">Successfully Subscribed!</h4>
+                <p className="text-gray-600">Thank you for joining our sustainability community.</p>
+              </div>
+            ) : (
+              <form onSubmit={handleNewsletterSignup} className="flex gap-4">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email"
+                  className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green-500 focus:border-transparent"
+                  required
+                />
+                <motion.button
+                  type="submit"
+                  className="btn-primary px-6"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Subscribe
+                </motion.button>
+              </form>
+            )}
           </motion.div>
         </motion.div>
       </div>

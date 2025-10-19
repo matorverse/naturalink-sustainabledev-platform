@@ -5,26 +5,70 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    /* Prevent zoom on mobile devices */
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
   }
   
   body {
     font-family: 'Inter', system-ui, sans-serif;
     line-height: 1.6;
+    /* Prevent horizontal scroll on mobile */
+    overflow-x: hidden;
+    /* Better touch targets */
+    -webkit-tap-highlight-color: transparent;
   }
   
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Poppins', system-ui, sans-serif;
     font-weight: 600;
   }
+
+  /* Improve mobile viewport handling */
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Better mobile form inputs */
+  input, textarea, select {
+    font-size: 16px; /* Prevents zoom on iOS */
+    -webkit-appearance: none;
+    border-radius: 0;
+  }
+
+  /* Touch-friendly buttons */
+  button {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Prevent text selection on buttons */
+  button, .btn-primary, .btn-secondary {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  /* Better mobile scrolling */
+  .overflow-y-auto {
+    -webkit-overflow-scrolling: touch;
+  }
 }
 
 @layer components {
   .btn-primary {
     @apply bg-eco-green-600 hover:bg-eco-green-700 text-white font-medium px-6 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg;
+    /* Better mobile touch targets */
+    min-height: 44px;
+    min-width: 44px;
   }
   
   .btn-secondary {
     @apply bg-transparent border-2 border-eco-green-600 text-eco-green-600 hover:bg-eco-green-600 hover:text-white font-medium px-6 py-3 rounded-lg transition-all duration-300;
+    /* Better mobile touch targets */
+    min-height: 44px;
+    min-width: 44px;
   }
   
   .card {

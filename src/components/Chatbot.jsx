@@ -47,6 +47,52 @@ const Chatbot = ({ onClose }) => {
   ]
 
   const generateBotResponse = (userMessage) => {
+    const message = userMessage.toLowerCase()
+    
+    // Smart response generation based on keywords
+    if (message.includes('carbon') || message.includes('footprint')) {
+      return {
+        text: "I'd love to help you calculate your carbon footprint! Here are some key areas to consider:\n\n• Transportation (car, flights, public transport)\n• Energy usage (electricity, heating)\n• Diet and food choices\n• Shopping and consumption habits\n\nWould you like me to guide you through calculating any of these areas?",
+        suggestions: ["Transportation impact", "Energy usage", "Diet choices", "Shopping habits"]
+      }
+    }
+    
+    if (message.includes('energy') || message.includes('electricity')) {
+      return {
+        text: "Energy conservation is crucial for reducing your carbon footprint! Here are some effective tips:\n\n• Switch to LED bulbs (saves 80% energy)\n• Unplug unused electronics\n• Use programmable thermostats\n• Wash clothes in cold water\n• Air dry when possible\n\nDid you know the average home can save 20-30% on energy bills with these changes?",
+        suggestions: ["More energy tips", "Calculate energy impact", "Smart home solutions", "Renewable energy"]
+      }
+    }
+    
+    if (message.includes('transport') || message.includes('car') || message.includes('commute')) {
+      return {
+        text: "Transportation is often the biggest contributor to personal carbon footprints! Here are eco-friendly alternatives:\n\n• Carpooling reduces emissions by 50%\n• Public transport is 45% more efficient than driving\n• Cycling produces zero emissions\n• Electric vehicles are 70% cleaner than gas cars\n• Walking for short trips is the most sustainable option\n\nWhat's your current commute situation?",
+        suggestions: ["Public transport options", "Electric vehicles", "Cycling tips", "Carpooling benefits"]
+      }
+    }
+    
+    if (message.includes('diet') || message.includes('food') || message.includes('meat')) {
+      return {
+        text: "Your food choices have a huge environmental impact! Here's what you should know:\n\n• Plant-based diets can reduce food emissions by 70%\n• Local, seasonal foods have lower transport emissions\n• Reducing food waste saves 8% of global emissions\n• Organic farming improves soil health\n• Meat production accounts for 14.5% of global emissions\n\nInterested in learning about sustainable eating?",
+        suggestions: ["Plant-based recipes", "Local food sources", "Reducing food waste", "Sustainable farming"]
+      }
+    }
+    
+    if (message.includes('waste') || message.includes('plastic') || message.includes('recycle')) {
+      return {
+        text: "Waste reduction is essential for a sustainable future! Here are practical steps:\n\n• Follow the 3 R's: Reduce, Reuse, Recycle\n• Avoid single-use plastics\n• Compost organic waste\n• Buy in bulk to reduce packaging\n• Repair instead of replacing\n• Choose products with minimal packaging\n\nEvery small action makes a difference!",
+        suggestions: ["Zero waste lifestyle", "Composting guide", "Plastic alternatives", "Recycling tips"]
+      }
+    }
+    
+    if (message.includes('tip') || message.includes('advice') || message.includes('help')) {
+      return {
+        text: "I'm here to help you live more sustainably! Here are some quick wins:\n\n• Start with one change at a time\n• Set realistic goals\n• Track your progress\n• Join community challenges\n• Share your journey with others\n\nWhat area of sustainability interests you most?",
+        suggestions: ["Energy saving", "Waste reduction", "Sustainable transport", "Green living"]
+      }
+    }
+    
+    // Default responses for common queries
     const responses = {
       calculate: {
         text: "Great! Let's calculate your carbon footprint. I'll need some information:",

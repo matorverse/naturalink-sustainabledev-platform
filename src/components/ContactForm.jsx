@@ -24,13 +24,28 @@ const ContactForm = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm()
 
   const onSubmit = async (data) => {
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    setIsSubmitted(true)
-    reset()
-    
-    // Reset success message after 5 seconds
-    setTimeout(() => setIsSubmitted(false), 5000)
+    try {
+      // Simulate form submission with loading state
+      await new Promise(resolve => setTimeout(resolve, 1500))
+      
+      // Store form data in localStorage for demo purposes
+      const submissions = JSON.parse(localStorage.getItem('contactSubmissions') || '[]')
+      submissions.push({
+        ...data,
+        submittedAt: new Date().toISOString(),
+        id: Date.now()
+      })
+      localStorage.setItem('contactSubmissions', JSON.stringify(submissions))
+      
+      setIsSubmitted(true)
+      reset()
+      
+      // Reset success message after 5 seconds
+      setTimeout(() => setIsSubmitted(false), 5000)
+    } catch (error) {
+      console.error('Form submission error:', error)
+      // In a real app, you'd show an error message
+    }
   }
 
   const containerVariants = {

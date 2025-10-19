@@ -46,7 +46,7 @@ const Hero = ({ onOpenChatbot }) => {
           {/* Main Tagline */}
           <motion.h1
             variants={itemVariants}
-            className="text-5xl md:text-7xl font-bold mb-6"
+            className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6"
           >
             <span className="text-gradient">Empowering</span>
             <br />
@@ -56,7 +56,7 @@ const Hero = ({ onOpenChatbot }) => {
           {/* Description */}
           <motion.p
             variants={itemVariants}
-            className="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed"
+            className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed px-4"
           >
             Join the AI-powered revolution in environmental awareness. 
             Track your carbon footprint, discover eco-friendly solutions, 
@@ -66,7 +66,7 @@ const Hero = ({ onOpenChatbot }) => {
           {/* CTA Buttons */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 px-4"
           >
             <motion.button
               onClick={onOpenChatbot}

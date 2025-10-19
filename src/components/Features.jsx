@@ -11,9 +11,13 @@ import {
   ChevronRight,
   Sparkles
 } from 'lucide-react'
+import CarbonCalculator from './CarbonCalculator'
+import CommunityChallenges from './CommunityChallenges'
 
 const Features = () => {
   const [activeFeature, setActiveFeature] = useState(0)
+  const [showCalculator, setShowCalculator] = useState(false)
+  const [showChallenges, setShowChallenges] = useState(false)
   const { ref, inView } = useInView({
     threshold: 0.1,
     triggerOnce: true
@@ -190,11 +194,17 @@ const Features = () => {
                 </ul>
                 
                 <motion.button
+                  onClick={() => {
+                    if (index === 0) setShowCalculator(true)
+                    else if (index === 3) setShowChallenges(true)
+                  }}
                   className={`mt-6 w-full ${isActive ? 'btn-primary' : 'btn-secondary'}`}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  {isActive ? 'Currently Active' : 'Learn More'}
+                  {index === 0 ? 'Try Calculator' : 
+                   index === 3 ? 'Join Challenges' :
+                   isActive ? 'Currently Active' : 'Learn More'}
                 </motion.button>
               </motion.div>
             )
@@ -246,6 +256,7 @@ const Features = () => {
               </div>
               
               <motion.button
+                onClick={() => setShowCalculator(true)}
                 className="btn-primary w-full mt-6"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -256,6 +267,10 @@ const Features = () => {
           </motion.div>
         </motion.div>
       </div>
+      
+      {/* Modals */}
+      {showCalculator && <CarbonCalculator onClose={() => setShowCalculator(false)} />}
+      {showChallenges && <CommunityChallenges onClose={() => setShowChallenges(false)} />}
     </section>
   )
 }
